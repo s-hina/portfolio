@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title', 'K-likely')
+@section('title', 'K-likey')
 
 @section('content')
     <div class="container">

@@ -32,7 +32,7 @@
             <nav class="navbar navbar-expand-md sticky-top navbar-dark navbar-laravel">
                 <div class="container">
                     <a class="navbar-brand" href="{{ url('/') }}">
-                        <img class='logo' src="{{ asset('/assets/2_Flat_logo_on_transparent_106x73.png') }}" alt="logo">
+                        <img class='logo' src="{{ asset('/assets/2_Flat_logo_on_transparent_99x75.png') }}" alt="logo">
                         
                     </a>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -53,9 +53,7 @@
                                             <li class="nav-item active">
                                                 <a class="nav-link" href="#">Edit:投稿</a>
                                             </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="#">Fation</a>
-                                            </li>
+                                            
                                             <li class="nav-item dropdown">
                                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                     Category</a>
@@ -72,7 +70,30 @@
                                         <button class="btn btn-primary" style="border-color:white;
                                         background-color:pink;"  type="submit">Search</button>
                                     </form>
-                            </nav>
+                                                    <!-- Authentication Links -->
+                        {{-- ログインしていなかったらログイン画面へのリンクを表示 --}}
+                        @guest
+                            <li><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>
+                        {{-- ログインしていたらユーザー名とログアウトボタンを表示 --}}
+                        @else
+                            <li class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    {{ Auth::user()->name }} <span class="caret"></span>
+                                </a>
+
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                                    </a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
+                                </div>
+                            </li>
+                            @endguest
                         </ul>
                     </div>
                 </div>
